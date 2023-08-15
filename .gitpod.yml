@@ -9,6 +9,7 @@ vscode:
     - vscjava.vscode-java-test
     - vscjava.vscode-spring-initializr
     - vscjava.vscode-spring-boot-dashboard
+    - tomoki1207.pdf
 
 # Commands to run on start
 tasks:
