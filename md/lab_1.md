@@ -1,6 +1,22 @@
 Lab: Spring Initializr
 ======================
 
+
+**Java Setup Gitpod**
+
+1. Open the Gitpod workspace.
+
+2. In the terminal, use the following commands to update the Java version:
+
+   ```bash
+   # List available Java versions
+   sdk list java
+
+   # Install and set the desired Java version
+   sdk install java 17.0.8-oracle
+   sdk use java 17.0.8-oracle
+
+
 Complete the following steps to use Spring Initializr to set up the Family Cash Card REST API application.
 
 1. Open **Spring Initializr** in web browser: `https://start.spring.io/`
