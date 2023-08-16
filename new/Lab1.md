@@ -3,46 +3,66 @@
 
 ## **Use Case: Account Balance Inquiry**
 
-In today's digital banking era, customers demand instant access to their account details, including checking their balance in real-time. In this lab, we'll build a microservice named "Account Balance Inquiry" using Spring Boot. This service will simulate checking an account balance. For added depth, we'll containerize this microservice using Docker, making it ready for scalable deployment.
+Modern banks rely on microservices to deliver instantaneous results to their customers. Imagine you're a developer at such a bank, tasked with creating an "Account Balance Inquiry" service. This service will allow customers to check their account balances in real time. In this lab, we'll build this microservice using Spring Boot, and for an added challenge, we'll containerize it using Docker.
 
-## **Steps**
+## **Lab Setup in Gitpod**
 
-### **1. Create a New Directory for Your Project**
+### **1. Open Terminal in Gitpod**
 
-Begin by initializing a new directory for our microservice:
+Start by opening the terminal from the Gitpod interface.
+
+### **2. Install JDK 17**
+
+Set up JDK 17 for our project by entering the following in the terminal:
 
 ```bash
-mkdir account-balance-service
-cd account-balance-service
+sdk install java 17.0.8-oracle
+sdk use java 17.0.8-oracle
 ```
 
-### **2. Bootstrap Your Spring Boot Application with Gradle**
+### **3. Navigate to the Root Directory**
 
-Use Spring Initializr to bootstrap your Spring Boot project with Gradle:
+In the terminal, navigate to the root directory:
+
+```bash
+cd /workspace/spring-boot-java/account-balance-service
+```
+
+### **4. Bootstrap Your Spring Boot Application with Gradle**
+
+Bootstrap your Spring Boot project using Spring Initializr:
 
 ```bash
 curl https://start.spring.io/starter.zip -o account-balance-service.zip -d type=gradle-project -d dependencies=web
 unzip account-balance-service.zip
 ```
 
-### **3. Remove the Default `demo` Folder**
+### **5. Delete the Default Test File**
 
-Eliminate the automatically generated `demo` folder:
+The default test file is named `DemoApplicationTests.java` and is located in the `src/test/java/com/example/demo` directory. Remove it:
+
+```bash
+rm src/test/java/com/example/demo/DemoApplicationTests.java
+```
+
+### **6. Remove the Default `demo` Folder**
+
+Remove the auto-generated `demo` folder:
 
 ```bash
 rm -r src/main/java/com/example/demo
 ```
 
-### **4. Create Your Main Application Class**
+### **7. Create the Main Application Class**
 
-Set up the primary entry point:
+Navigate to the appropriate directory and establish the main class:
 
 ```bash
 mkdir -p src/main/java/com/bank/balance
 touch src/main/java/com/bank/balance/AccountBalanceApplication.java
 ```
 
-Input the following content:
+Edit `AccountBalanceApplication.java` in Gitpod and populate with:
 
 ```java
 package com.bank.balance;
@@ -58,15 +78,15 @@ public class AccountBalanceApplication {
 }
 ```
 
-### **5. Create a Simple REST Controller for Account Balance Inquiry**
+### **8. Craft the REST Controller for Account Balance Inquiry**
 
-Set up a basic controller:
+Set up a controller:
 
 ```bash
 touch src/main/java/com/bank/balance/BalanceController.java
 ```
 
-Populate with:
+Edit `BalanceController.java` and input:
 
 ```java
 package com.bank.balance;
@@ -83,42 +103,54 @@ public class BalanceController {
 }
 ```
 
-### **6. Build Your Application with Gradle**
+### **9. Build the Application with Gradle**
 
-In your Gitpod terminal, execute:
+Back in the terminal:
 
 ```bash
 ./gradlew build
 ```
 
-### **7. Run Your Application**
+### **10. Run the Application**
 
-Still in the terminal:
+Execute:
 
 ```bash
 ./gradlew bootRun
 ```
 
-Once your application starts, you can access the balance check at `http://localhost:8080/balance`.
+Upon startup, in Gitpod's browser view, navigate to `http://localhost:8080/balance`.
 
-### **8. Docker Bonus: Containerize the Microservice**
+### **11. Docker Bonus: Containerize the Microservice**
 
-To containerize, you first need a Dockerfile. Create one in the root directory:
+First, create a Dockerfile in the root directory:
 
 ```bash
 touch Dockerfile
 ```
 
-Populate with:
+Edit `Dockerfile`:
 
 ```Dockerfile
 FROM openjdk:11
 EXPOSE 8080
-ADD build/libs/account-balance-service-0.0.1-SNAPSHOT.jar account-balance-service.jar
+ADD build/libs/demo-0.0.1-SNAPSHOT.jar account-balance-service.jar
 ENTRYPOINT ["java", "-jar", "/account-balance-service.jar"]
 ```
 
-Build the Docker image:
+Ensure you've built the application:
+
+```bash
+./gradlew build
+```
+
+Then, verify if the `.jar` file is generated:
+
+```bash
+ls build/libs/
+```
+
+If the `.jar` file is present, proceed with the Docker build:
 
 ```bash
 docker build -t account-balance-service .
@@ -130,8 +162,8 @@ Run the container:
 docker run -p 8080:8080 account-balance-service
 ```
 
-Access the service again at `http://localhost:8080/balance`.
+Visit `http://localhost:8080/balance` to access the service.
 
 ## **Conclusion**
 
-Kudos! You've successfully developed, containerized, and deployed a Spring Boot microservice using Docker. This "Account Balance Inquiry" service demonstrates the power and flexibility of Spring Boot combined with the scalability and portability of Docker containers. Such skills are invaluable in today's cloud-native world.
+Congratulations! You've designed a Spring Boot microservice, containerized it with Docker within Gitpod, and deployed it. This "Account Balance Inquiry" service represents the union of Spring Boot and Docker in constructing robust, scalable services.
