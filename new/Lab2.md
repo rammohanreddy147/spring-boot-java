@@ -25,6 +25,7 @@ Modify `BalanceController.java` to include endpoints that handle deposits, withd
 
 Make sure to add these imports:
 ```java
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -54,7 +55,7 @@ public String depositViaGet(@RequestParam Double amount) {
 
 // Using POST
 @PostMapping("/deposit")
-public String depositViaPost(@RequestParam Double amount) {
+public String depositViaPost(@ModelAttribute("amount") Double amount) {
     // Mock operation
     return String.format("Successfully deposited $%.2f to your account via POST.", amount);
 }
@@ -74,7 +75,7 @@ public String withdrawViaGet(@RequestParam Double amount) {
 
 // Using POST
 @PostMapping("/withdraw")
-public String withdrawViaPost(@RequestParam Double amount) {
+public String withdrawViaPost(@ModelAttribute("amount") Double amount) {
     // Mock operation
     return String.format("Successfully withdrew $%.2f from your account via POST.", amount);
 }
