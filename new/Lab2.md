@@ -117,13 +117,13 @@ For POST requests, you can use Postman, a popular tool for API testing. Alternat
 - Deposit using POST:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d "500" http://localhost:8080/deposit
+curl -d "amount=500" -X POST http://localhost:8080/deposit
 ```
 
 - Withdraw using POST:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d "50" http://localhost:8080/withdraw
+curl -d "50" http://localhost:8080/withdraw
 ```
 
 - View transaction history: `http://localhost:8080/history`
