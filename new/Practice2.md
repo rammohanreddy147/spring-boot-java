@@ -98,6 +98,29 @@ server.port=8081
 
 This will run the application on port 8081.
 
+- To enable the actuator (with the healthchecking), go back to `application.properties`:
+
+  ```
+  implementation 'org.springframework.boot:spring-boot-starter-actuator'
+  management.endpoints.web.exposure.include=*
+  ```
+List of Common Actuator Endpoints:
+
+- /actuator/health: Health status of the application.
+- /actuator/info: Arbitrary application information.
+- /actuator/metrics: Shows several metrics of the application.
+- /actuator/prometheus: Exposes metrics in a format that can be scraped by a Prometheus server.
+- /actuator/loggers: Displays and modifies the configuration of loggers in the application.
+- /actuator/auditevents: Exposes audit events information.
+- /actuator/env: Exposes properties from the Spring ConfigurableEnvironment.
+- /actuator/beans: Displays a complete list of all the Spring beans in your application.
+- /actuator/threaddump: Performs a thread dump.
+- /actuator/httptrace: Traces HTTP request-response exchanges.
+- /actuator/scheduledtasks: Displays the scheduled tasks in your application.
+- /actuator/mappings: Displays a list of all @RequestMapping paths.
+
+There are other endpoints available as well, and it's possible to define custom endpoints. The aforementioned ones are just the most commonly used.
+
 ### **8. Run Your Application**
 
 In your terminal, start your Spring Boot application:
