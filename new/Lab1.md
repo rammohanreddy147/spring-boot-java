@@ -11,40 +11,40 @@ In today's digital banking era, customers demand instant access to their account
 
 Begin by initializing a new directory for our microservice:
 
-\```bash
+```bash
 mkdir account-balance-service
 cd account-balance-service
-\```
+```
 
 ### **2. Bootstrap Your Spring Boot Application with Gradle**
 
 Use Spring Initializr to bootstrap your Spring Boot project with Gradle:
 
-\```bash
+```bash
 curl https://start.spring.io/starter.zip -o account-balance-service.zip -d type=gradle-project -d dependencies=web
 unzip account-balance-service.zip
-\```
+```
 
 ### **3. Remove the Default `demo` Folder**
 
 Eliminate the automatically generated `demo` folder:
 
-\```bash
+```bash
 rm -r src/main/java/com/example/demo
-\```
+```
 
 ### **4. Create Your Main Application Class**
 
 Set up the primary entry point:
 
-\```bash
+```bash
 mkdir -p src/main/java/com/bank/balance
 touch src/main/java/com/bank/balance/AccountBalanceApplication.java
-\```
+```
 
 Input the following content:
 
-\```java
+```java
 package com.bank.balance;
 
 import org.springframework.boot.SpringApplication;
@@ -56,19 +56,19 @@ public class AccountBalanceApplication {
         SpringApplication.run(AccountBalanceApplication.class, args);
     }
 }
-\```
+```
 
 ### **5. Create a Simple REST Controller for Account Balance Inquiry**
 
 Set up a basic controller:
 
-\```bash
+```bash
 touch src/main/java/com/bank/balance/BalanceController.java
-\```
+```
 
 Populate with:
 
-\```java
+```java
 package com.bank.balance;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -81,23 +81,23 @@ public class BalanceController {
         return "Your current balance is $5000.";
     }
 }
-\```
+```
 
 ### **6. Build Your Application with Gradle**
 
 In your Gitpod terminal, execute:
 
-\```bash
+```bash
 ./gradlew build
-\```
+```
 
 ### **7. Run Your Application**
 
 Still in the terminal:
 
-\```bash
+```bash
 ./gradlew bootRun
-\```
+```
 
 Once your application starts, you can access the balance check at `http://localhost:8080/balance`.
 
@@ -105,30 +105,30 @@ Once your application starts, you can access the balance check at `http://localh
 
 To containerize, you first need a Dockerfile. Create one in the root directory:
 
-\```bash
+```bash
 touch Dockerfile
-\```
+```
 
 Populate with:
 
-\```Dockerfile
+```Dockerfile
 FROM openjdk:11
 EXPOSE 8080
 ADD build/libs/account-balance-service-0.0.1-SNAPSHOT.jar account-balance-service.jar
 ENTRYPOINT ["java", "-jar", "/account-balance-service.jar"]
-\```
+```
 
 Build the Docker image:
 
-\```bash
+```bash
 docker build -t account-balance-service .
-\```
+```
 
 Run the container:
 
-\```bash
+```bash
 docker run -p 8080:8080 account-balance-service
-\```
+```
 
 Access the service again at `http://localhost:8080/balance`.
 
