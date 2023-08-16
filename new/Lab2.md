@@ -54,7 +54,7 @@ public String depositViaGet(@RequestParam Double amount) {
 
 // Using POST
 @PostMapping("/deposit")
-public String depositViaPost(@RequestBody Double amount) {
+public String depositViaPost(@RequestParam Double amount) {
     // Mock operation
     return String.format("Successfully deposited $%.2f to your account via POST.", amount);
 }
@@ -74,7 +74,7 @@ public String withdrawViaGet(@RequestParam Double amount) {
 
 // Using POST
 @PostMapping("/withdraw")
-public String withdrawViaPost(@RequestBody Double amount) {
+public String withdrawViaPost(@RequestParam Double amount) {
     // Mock operation
     return String.format("Successfully withdrew $%.2f from your account via POST.", amount);
 }
