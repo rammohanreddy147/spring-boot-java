@@ -123,7 +123,7 @@ curl -d "amount=500" -X POST http://localhost:8080/deposit
 - Withdraw using POST:
 
 ```bash
-curl -d "50" http://localhost:8080/withdraw
+curl -d "amount=50" -X POST http://localhost:8080/withdraw
 ```
 
 - View transaction history: `http://localhost:8080/history`
